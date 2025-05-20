@@ -5,50 +5,80 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-        
-         ArrayList<String> easy = new ArrayList<>();
-         ArrayList<String> medium = new ArrayList<>();
-         ArrayList<String> hard = new ArrayList<>();
 
-        //Questions:
-         easy.add("Name an element in the group");
-         easy.add("What's the symbol for");
-         easy.add("What's the element for the symbol");
+        ArrayList<String> easy = new ArrayList<>();
+        ArrayList<String> medium = new ArrayList<>();
+        ArrayList<String> hard = new ArrayList<>();
 
-         medium.add("Which element corresponds to the symbol");
-         medium.add("What group does the element  belong to");
+        // Questions for random selection
+        easy.add("Name an element in the group");
+        easy.add("What is the symbol for");
+        easy.add("What is the element for the symbol");
 
-         hard.add("Which element corresponds to the atomic number");
-         hard.add("What is the atomic mass for the element");
+        medium.add("Which element corresponds to the symbol");
+        medium.add("What group does the element belong to");
 
-        //Instructions:
+        hard.add("Which element corresponds to the atomic number");
+        hard.add("What is the atomic mass for the element");
+
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Hi! Please enter your name");
-         if (scanner.hasNextLine()) {
-            String text = scanner.nextLine();
-        }
 
-        System.out.println("Welcome "+ text + ". What would you like to do, practice or test?");
-         if (scanner.hasNextLine()) {
-            String text = scanner.nextLine();
-        }
-        if(text.equals("practice"))
-        {
-            System.out.println("What difficulty would you like to do? Easy, Medium, Hard");
-             if (scanner.hasNextLine()) {
-                 String text = scanner.nextLine();
+        // Ask for user's name
+        System.out.println("Hi. Please enter your name");
+        String name = scanner.nextLine();
+
+        // Ask for mode selection
+        System.out.println("Welcome " + name + ". Type practice or test to continue");
+        String mode = scanner.nextLine();
+
+        // Handle practice mode
+        if (mode.equalsIgnoreCase("practice")) {
+            System.out.println("Select difficulty level: Easy, Medium, or Hard");
+            String difficulty = scanner.nextLine();
+
+            System.out.println("Understood. Starting practice mode with difficulty: " + difficulty);
+            System.out.println("If you wish to quit during the session, type 'quit'");
+
+            ArrayList<String> selectedQuestions = new ArrayList<>();
+
+            // Choose the question bank based on selected difficulty
+            if (difficulty.equalsIgnoreCase("easy")) {
+                selectedQuestions = easy;
+            } else if (difficulty.equalsIgnoreCase("medium")) {
+                selectedQuestions = medium;
+            } else if (difficulty.equalsIgnoreCase("hard")) {
+                selectedQuestions = hard;
+            } else {
+                System.out.println("Invalid difficulty level selected. Ending program.");
+                return;
             }
-            System.out.println("Understood! Starting practice, Difficulty: " + text + ". If you wish to quit anytime during the practice or the exam, you can enter 'quit'");
-            
-            // while loop that will run unless the user ever inputs quit, or if they took test (they win)
-            //in while loop, accesses the difficulty, if(text.equals("easy"), hard, etc.)
-            //accesses those questions with Math.randomInt, and then will print a question
+
+            while (true) {
+                int index = (int)(Math.random() * selectedQuestions.size());
+                String question = selectedQuestions.get(index);
+
+                System.out.println(question);
+
+                String answer = scanner.nextLine();
+                if (answer.equalsIgnoreCase("quit")) {
+                    System.out.println("Exiting practice session");
+                    break;
+                }
+
+                String fileName = "";
+                if (question.contains("group")) {
+                    fileName = "Groups.txt";
+                } else if (question.contains("symbol for")) {
+                    fileName = "Symbols.txt";
+                } else if (question.contains("element for the symbol")) {
+                    fileName = "Element.txt";
+                } else if (question.contains("atomic number")) {
+                    fileName = "Numbers.txt";
+                } else if (question.contains("atomic mass")) {
+                    fileName = "Mass.txt";
+                }
+
+            }
         }
-
-
-
-
     }
 }
-
-
