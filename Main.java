@@ -5,20 +5,6 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
-
-        ArrayList<String> easy = new ArrayList<>();
-        ArrayList<String> medium = new ArrayList<>();
-        ArrayList<String> hard = new ArrayList<>();
-
-        // Questions for random selection
-        easy.add("Name an element in the group ");
-        easy.add("What is the symbol for ");
-        easy.add("What is the element for the symbol ");
-        medium.add("Which element corresponds to the symbol ");
-        medium.add("What group contains the element ");
-        hard.add("Which element corresponds to the atomic number ");
-        hard.add("What is the atomic mass for the element ");
-
         Scanner scanner = new Scanner(System.in);
 
         // Ask for user's name
