@@ -1,7 +1,4 @@
 import java.util.Scanner;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,55 +11,35 @@ public class Main {
         // Ask for mode selection
         System.out.println("Welcome " + name + ". Type practice or test to continue");
         String mode = scanner.nextLine();
+        if(!(mode.equalsIgnoreCase("practice") || mode.equalsIgnoreCase("test"))){
+            System.out.println("Invalid argument selected. Ending program.");
+            return;
+        }
 
         // Handle practice mode
         if (mode.equalsIgnoreCase("practice")) {
-            System.out.println("Select difficulty level: Easy, Medium, or Hard");
+            System.out.println("Select difficulty level: easy, medium, or hard");
             String difficulty = scanner.nextLine();
-
-            System.out.println("Understood. Starting practice mode with difficulty: " + difficulty);
-            System.out.println("If you wish to quit during the session, type 'quit'");
-
-            ArrayList<String> selectedQuestions = new ArrayList<>();
-
             // Choose the question bank based on selected difficulty
-            if (difficulty.equalsIgnoreCase("easy")) {
-                selectedQuestions = easy;
-            } else if (difficulty.equalsIgnoreCase("medium")) {
-                selectedQuestions = medium;
-            } else if (difficulty.equalsIgnoreCase("hard")) {
-                selectedQuestions = hard;
-            } else {
+            if (!(difficulty.equals("easy") || (difficulty.equals("medium") || difficulty.equals("hard")))) {
                 System.out.println("Invalid difficulty level selected. Ending program.");
                 return;
             }
 
+            System.out.println("Understood. Starting practice mode with difficulty: " + difficulty);
+            System.out.println("If you wish to quit during the session, type 'quit'");
+
             while (true) {
-                int index = (int)(Math.random() * selectedQuestions.size());
-                String question = selectedQuestions.get(index);
-
-                System.out.println(question);
-
                 String answer = scanner.nextLine();
                 if (answer.equalsIgnoreCase("quit")) {
                     System.out.println("Exiting practice session");
                     break;
+                } else {
+                    PeriodicTable.easy();
                 }
-
-                String fileName = "";
-                if (question.contains("group")) {
-                    fileName = "Groups.txt";
-                } else if (question.contains("symbol for")) {
-                    fileName = "Symbols.txt";
-                } else if (question.contains("element for the symbol")) {
-                    fileName = "Element.txt";
-                } else if (question.contains("atomic number")) {
-                    fileName = "Numbers.txt";
-                } else if (question.contains("atomic mass")) {
-                    fileName = "Mass.txt";
-                }
-
             }
         }
+
+        scanner.close();
     }
 }
