@@ -2,19 +2,19 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class PeriodicTable {
-    private static int score = 0;
-    private static Scanner scanner = new Scanner(System.in);
-    private static boolean test = false;
+    private int score = 0;
+    private Scanner scanner = new Scanner(System.in);
+    private boolean test = false;
 
     public void enableTesting() {
         test = true;
     }
 
-    public static int testScore() {
+    public int testScore() {
         return score;
     }
 
-    public static void easy() {
+    public void easy() {
         ArrayList<String> easy = new ArrayList<>();
         easy.add("Name an element in the group");
         easy.add("What is the symbol for ");
@@ -64,10 +64,22 @@ public class PeriodicTable {
             if (!test) {
                 System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Symbols.txt", num));
             }
-        } else {
+        }
+    }
+
+    public void medium() {
+        ArrayList<String> medium = new ArrayList<>();
+        medium.add("Which element corresponds to the symbol ");
+        medium.add("What group contains the element ");
+
+        int choose = (int) (Math.random() * 2);
+        String question = medium.get(choose);
+
+        if (question.equals(medium.get(0))) {
+
             int num = (int) (Math.random() * 118);
             String symbol = FindInFile.getStringByIndex("Symbols.txt", num);
-            System.out.println(easy.get(2) + symbol + "?");
+            System.out.println(medium.get(0) + symbol + "?");
             String answer = scanner.nextLine();
             System.out.println("Answer entered: " + answer);
             int answerIndex = FindInFile.findIndex("Elements.txt", answer);
@@ -80,18 +92,89 @@ public class PeriodicTable {
             if (!test) {
                 System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Elements.txt", num));
             }
+        } else {
+            int num = (int) (Math.random() * 118);
+            String element = FindInFile.getStringByIndex("Elements.txt", num);
+            System.out.println(medium.get(1) + element + ".");
+            String answer = scanner.nextLine();
+            System.out.println("Answer entered: " + answer);
+            int answerIndex = FindInFile.findIndex("Groups.txt", answer);
+
+            if (answerIndex > -1) {
+                String elementOfAnswer = FindInFile.getStringByIndex("Elements.txt", answerIndex);
+                if (element.equals(elementOfAnswer) && test) {
+                    score++;
+                }
+            }
+            if (!test) {
+                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Groups.txt", num));
+            }
+
         }
     }
 
-    public boolean medium() {
-        ArrayList<String> medium = new ArrayList<>();
-        medium.add("Which element corresponds to the symbol ");
-        medium.add("What group contains the element ");
-    }
-
-    public boolean hard() {
+    public void hard() {
         ArrayList<String> hard = new ArrayList<>();
         hard.add("Which element corresponds to the atomic number ");
+        hard.add("What is the atomic number for the element ");
         hard.add("What is the atomic mass for the element ");
+
+        int choose = (int) (Math.random() * 3);
+        String question = hard.get(choose);
+
+        if(question.equals(hard.get(0))){
+            
+            int num = (int) (Math.random() * 118 + 1);
+            System.out.println(hard.get(0) + num + ".");
+            String answer = scanner.nextLine();
+            System.out.println("Answer entered: " + answer);
+            int answerIndex = FindInFile.findIndex("Elements.txt", answer);
+
+            if (answerIndex > -1) {
+                if (num == answerIndex + 1 && test) {
+                    score++;
+                }
+            }
+            if (!test) {
+                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Elements.txt", num - 1));
+            }
+
+        } else if(question.equals(hard.get(1))) {
+            
+            int num = (int) (Math.random() * 118);
+            String element = FindInFile.getStringByIndex("Elements.txt", num);
+            System.out.println(hard.get(1) + element + ".");
+            String answer = scanner.nextLine();
+            System.out.println("Answer entered: " + answer);
+            int answerIndex = FindInFile.findIndex("Numbers.txt", answer);
+
+            if (answerIndex > -1) {
+                String elementOfAnswer = FindInFile.getStringByIndex("Elements.txt", answerIndex);
+                if (element.equals(elementOfAnswer) && test) {
+                    score++;
+                }
+            }
+            if (!test) {
+                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Numbers.txt", num));
+            }
+        } else {
+            int num = (int) (Math.random() * 118);
+            String element = FindInFile.getStringByIndex("Elements.txt", num);
+            System.out.println(hard.get(2) + element + ".");
+            String answer = scanner.nextLine();
+            System.out.println("Answer entered: " + answer);
+            int answerIndex = FindInFile.findIndex("Mass.txt", answer);
+
+            if (answerIndex > -1) {
+                String elementOfAnswer = FindInFile.getStringByIndex("Elements.txt", answerIndex);
+                if (element.equals(elementOfAnswer) && test) {
+                    score++;
+                }
+            }
+            if (!test) {
+                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Mass.txt", num));
+            }
+
+        }
     }
 }
