@@ -46,14 +46,14 @@ public class Main {
             }
         } else {
             //test mode
+            p.enableTesting();
             System.out.println("Test mode enabled. You will answer 10 questions of varying difficulty.");
             System.out.println("Your score will be shown at the end of the test.");
             System.out.println("Press enter to begin.");
             scanner.nextLine();
-            p.enableTesting();
 
-            for(int i = 0; i < 10; i++){
-                int random = (int) (Math.random()*3);
+            for(int i = 0; i < 5; i++){
+                int random = 0; //(int) (Math.random()*3);
                 if(random == 0) p.easy();
                 if(random == 1) p.medium();
                 if(random == 2) p.hard();
