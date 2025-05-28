@@ -52,8 +52,8 @@ public class Main {
             System.out.println("Press enter to begin.");
             scanner.nextLine();
 
-            for(int i = 0; i < 5; i++){
-                int random = 0; //(int) (Math.random()*3);
+            for(int i = 0; i < 8; i++){
+                int random = 1; //(int) (Math.random()*3);
                 if(random == 0) p.easy();
                 if(random == 1) p.medium();
                 if(random == 2) p.hard();

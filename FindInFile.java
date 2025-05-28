@@ -9,12 +9,12 @@ public class FindInFile {
 
         try (Scanner scanner = new Scanner(new File(filePath))) {
             while (scanner.hasNextLine()) {
+                currentIndex++;
                 String line = scanner.nextLine();
                 if (currentIndex == index) {
                     result = line;
                     break;
                 }
-                currentIndex++;
             }
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + e.getMessage());
@@ -28,11 +28,11 @@ public class FindInFile {
 
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
+                lineNumber++;
                 String line = scanner.nextLine();
                 if (line.equalsIgnoreCase(target)) {
                     return lineNumber;
                 }
-                lineNumber++;
             }
         } catch (FileNotFoundException e) {
             System.err.println("File not found: " + filePath);
