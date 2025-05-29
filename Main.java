@@ -5,8 +5,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         PeriodicTable p = new PeriodicTable();
 
+        System.out.println("Welcome to the Periodic Table review!");
         // Ask for user's name
-        System.out.println("Hi. Please enter your name");
+        System.out.println("Please enter your name");
         String name = scanner.nextLine();
 
         // Ask for mode selection
@@ -52,8 +53,8 @@ public class Main {
             System.out.println("Press enter to begin.");
             scanner.nextLine();
 
-            for(int i = 0; i < 8; i++){
-                int random = 1; //(int) (Math.random()*3);
+            for(int i = 0; i < 10; i++){
+                int random = (int) (Math.random()*3);
                 if(random == 0) p.easy();
                 if(random == 1) p.medium();
                 if(random == 2) p.hard();
@@ -61,8 +62,8 @@ public class Main {
 
             System.out.print("Your score is: ");
             int score = p.testScore();
-            double finalScore = score/10.0;
-            System.out.println(finalScore);
+            double finalScore = score*10.0;
+            System.out.println(finalScore + "%");
         }
 
         scanner.close();
