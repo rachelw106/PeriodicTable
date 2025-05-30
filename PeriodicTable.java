@@ -9,7 +9,6 @@ public class PeriodicTable {
     public void enableTesting() {
         test = true;
     }
-
     public int testScore() {
         return score;
     }
@@ -25,14 +24,6 @@ public class PeriodicTable {
             int num = (int) (Math.random() * 118 + 2);
             String group = FindInFile.getStringByIndex("Groups.txt", num);
             System.out.println(easy.get(0) + group + ".");
-            if (test) {
-                System.out.println("The correct answers are:");
-                for (int i = 2; i < 120; i++) {
-                    if (FindInFile.getStringByIndex("Groups.txt", i).equals(group)) {
-                        System.out.println(FindInFile.getStringByIndex("Elements.txt", i));
-                    }
-                }
-            }
             String answer = scanner.nextLine();
             System.out.println("Answer entered: " + answer);
             int answerIndex = FindInFile.findIndex("Elements.txt", answer);
@@ -41,18 +32,26 @@ public class PeriodicTable {
             if (test && group.equalsIgnoreCase(groupOfAnswer)) {
                 score++; System.out.println("true");
             }
+            if (!test) {
+                System.out.println("The correct answers are:");
+                for (int i = 2; i < 120; i++) {
+                    if (FindInFile.getStringByIndex("Groups.txt", i).equals(group)) {
+                        System.out.println(FindInFile.getStringByIndex("Elements.txt", i));
+                    }
+                }
+            }
         } else {
             int num = (int) (Math.random() * 118 + 2);
             String element = FindInFile.getStringByIndex("Elements.txt", num);
             System.out.println(easy.get(1) + element + "?");
-            if (test) {
-                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Symbols.txt", num));
-            }
             String answer = scanner.nextLine();
             System.out.println("Answer entered: " + answer);
 
             if (test && answer.equalsIgnoreCase(FindInFile.getStringByIndex("Symbols.txt", num))) {
                 score++; System.out.println("true");
+            }
+            if (!test) {
+                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Symbols.txt", num));
             }
         }
     }
@@ -68,14 +67,14 @@ public class PeriodicTable {
             int num = (int) (Math.random() * 118 + 2);
             String symbol = FindInFile.getStringByIndex("Symbols.txt", num);
             System.out.println(medium.get(0) + symbol + "?");
-            if (test) {
-                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Elements.txt", num));
-            }
 
             String answer = scanner.nextLine();
             System.out.println("Answer entered: " + answer);
             if (answer.equalsIgnoreCase(FindInFile.getStringByIndex("Elements.txt", num)) && test) {
                 score++; System.out.println("true");
+            }
+            if (!test) {
+                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Elements.txt", num));
             }
 
         } else {
@@ -83,17 +82,16 @@ public class PeriodicTable {
             String element = FindInFile.getStringByIndex("Elements.txt", num);
             System.out.println(medium.get(1) + element + ".");
 
-            if (test) {
-                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Groups.txt", num));
-            }
             String answer = scanner.nextLine();
             System.out.println("Answer entered: " + answer);
 
             if (answer.equalsIgnoreCase(FindInFile.getStringByIndex("Groups.txt", num)) && test) {
                 score++; System.out.println("true");
             }
+            if (!test) {
+                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Groups.txt", num));
+            }
         }
-
     }
 
     public void hard() {
@@ -107,37 +105,34 @@ public class PeriodicTable {
         if (choose == 0) {
             int num = (int) (Math.random() * 118 + 1);
             System.out.println(hard.get(0) + num + ".");
-            if (test) {
-                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Elements.txt", num + 2));
-            }
             String answer = scanner.nextLine();
             System.out.println("Answer entered: " + answer);
 
             if (answer.equalsIgnoreCase(FindInFile.getStringByIndex("Elements.txt", num + 2)) && test) {
                 score++; System.out.println("true");
             }
+            if (!test) {
+                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Elements.txt", num + 2));
+            }
 
         } else if (choose == 1) {
             int num = (int) (Math.random() * 118 + 2);
             String element = FindInFile.getStringByIndex("Elements.txt", num);
             System.out.println(hard.get(1) + element + ".");
-            if (test) {
-                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Numbers.txt", num));
-            }
             String answer = scanner.nextLine();
             System.out.println("Answer entered: " + answer);
 
             if (answer.equalsIgnoreCase(FindInFile.getStringByIndex("Numbers.txt", num)) && test) {
                 score++; System.out.println("true");
             }
+            if (!test) {
+                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Numbers.txt", num));
+            }
 
         } else {
             int num = (int) (Math.random() * 118 + 2);
             String element = FindInFile.getStringByIndex("Elements.txt", num);
             System.out.println(hard.get(2) + element + ".");
-            if (test) {
-                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Mass.txt", num));
-            }
             String answer = scanner.nextLine();
             System.out.println("Answer entered: " + answer);
 
@@ -152,11 +147,12 @@ public class PeriodicTable {
                 if(answer.substring(i, i+1).equals(".")) i = answer.length();
                 else ansRounded += answer.substring(i,i+1);
             }
-
             if (correctRounded.equalsIgnoreCase(ansRounded) && test) {
                 score++; System.out.println("true");
             }
-
+            if (!test) {
+                System.out.println("The correct answer is: " + FindInFile.getStringByIndex("Mass.txt", num));
+            }
         }
     }
 }

@@ -65,7 +65,6 @@ public class Main {
             double finalScore = score*10.0;
             System.out.println(finalScore + "%");
         }
-
         scanner.close();
     }
 }
